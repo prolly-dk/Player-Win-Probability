@@ -7,7 +7,7 @@ from functions import *
 playerHP, enemyHP = 50, 100
 playerDmgDice, enemyDmg = 6, 5
 
-D20_Test = Main_Simulation(playerHP, enemyHP, playerDmgDice, enemyDmg)
-D20_Test = D20_Test.set_index("run")
+simulation_results = Main_Simulation(playerHP, enemyHP, playerDmgDice, enemyDmg)
+simulation_results = simulation_results.set_index("run")
 
-print(D20_Test)
+print(simulation_results)

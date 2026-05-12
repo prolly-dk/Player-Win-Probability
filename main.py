@@ -9,5 +9,3 @@ playerDmgDice, enemyDmg = 6, 5
 
 simulation_results = Main_Simulation(playerHP, enemyHP, playerDmgDice, enemyDmg)
 simulation_results = simulation_results.set_index("run")
-
-print(simulation_results)

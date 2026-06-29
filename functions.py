@@ -13,8 +13,10 @@ def D20Roll():
     roll = np.random.randint(low=1, high=21)
     return roll
 
-def PlayerDamageRoll(Max):
-    damage = np.random.randint(low=1, high=Max+1) + np.random.randint(low=1, high=Max+1)
+def PlayerDamageRoll(Max, Num):
+    damage = 0
+    for i in range(Num):
+        damage += np.random.randint(low = 1, high = Max + 1)
     return damage;
 
 def HPCalc(HP, Damage):
@@ -23,7 +25,7 @@ def HPCalc(HP, Damage):
 
 # SIMULATIONS
 def Single_Simulation(
-    defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage
+    defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage, diceNum
 ):
     playerHP, enemyHP = defaultPlayerHP, defaultEnemyHP
     playerDmg, enemyDmg = 0, enemyDamage
@@ -43,7 +45,7 @@ def Single_Simulation(
             missCount += 1
 
         elif roll == 20:
-            playerDmgCrit = PlayerDamageRoll(playerDamageMax) * MULTIPLIER
+            playerDmgCrit = PlayerDamageRoll(playerDamageMax, diceNum) * MULTIPLIER
             damagePlayerDealt += playerDmgCrit
             enemyHP = HPCalc(enemyHP, playerDmgCrit)
             nat20Count += 1
@@ -55,7 +57,7 @@ def Single_Simulation(
             missCount += 1
 
         elif roll >= 12:
-            playerDmg = PlayerDamageRoll(playerDamageMax)
+            playerDmg = PlayerDamageRoll(playerDamageMax, diceNum)
             damagePlayerDealt += playerDmg
             enemyHP = HPCalc(enemyHP, playerDmg)
             hitCount += 1
@@ -77,12 +79,12 @@ def Single_Simulation(
     }
 
 def Main_Simulation(
-        defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage
+        defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage, diceNum
 ):
     RunDict = []
     for run in range(SAMPLE_SIZE):
         sim_results = Single_Simulation(
-            defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage
+            defaultPlayerHP, defaultEnemyHP, playerDamageMax, enemyDamage, diceNum
         )
 
         RunDict.append({

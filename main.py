@@ -5,7 +5,7 @@ from functions import *
 
 # Parameters
 playerHP, enemyHP = 50, 100
-playerDmgDice, enemyDmg = 6, 5
+playerDmgDice, playerDiceNum, enemyDmg = 6, 2, 5
 
-simulation_results = Main_Simulation(playerHP, enemyHP, playerDmgDice, enemyDmg)
+simulation_results = Main_Simulation(playerHP, enemyHP, playerDmgDice, enemyDmg, playerDiceNum)
 simulation_results = simulation_results.set_index("run")
